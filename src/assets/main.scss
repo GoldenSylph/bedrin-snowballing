@@ -1,0 +1,676 @@
+// Color Variables
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-900: #1f2937;
+
+$blue-50: #eff6ff;
+$blue-200: #bfdbfe;
+$blue-400: #3b82f6;
+$blue-600: #2563eb;
+$blue-700: #1d4ed8;
+$blue-900: #1e3a5f;
+
+$green-50: #f0fdf4;
+$green-200: #bbf7d0;
+$green-500: #22c55e;
+$green-600: #16a34a;
+$green-700: #15803d;
+
+$red-50: #fef2f2;
+$red-200: #fecaca;
+$red-400: #ef4444;
+$red-600: #dc2626;
+$red-700: #b91c1c;
+
+$orange-50: #fff7ed;
+$orange-100: #ffedd5;
+$orange-200: #fed7aa;
+$orange-600: #f59e0b;
+$orange-700: #d97706;
+$orange-800: #c2410c;
+
+$purple-50: #faf5ff;
+$purple-100: #f3e8ff;
+$purple-200: #e9d5ff;
+$purple-700: #7e22ce;
+
+$indigo-50: #eef2ff;
+$indigo-200: #c7d2fe;
+$indigo-600: #4338ca;
+$indigo-700: #4338ca;
+$indigo-900: #3730a3;
+
+$teal-50: #f0fdfa;
+$teal-200: #99f6e4;
+$teal-400: #14b8a6;
+$teal-700: #0f766e;
+
+$yellow-50: #fefce8;
+$yellow-100: #fef9c3;
+$yellow-200: #fef08a;
+$yellow-400: #fbbf24;
+$yellow-700: #a16207;
+
+$pink-50: #fce7f3;
+$pink-100: #fce7f3;
+$pink-700: #be185d;
+
+$amber-50: #fffbeb;
+
+// Reset Styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: $gray-100;
+  color: $gray-900;
+  font-size: 13px;
+}
+
+// App Block
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+// Header Block
+.header {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid $gray-200;
+  padding: 20px;
+  margin-bottom: 14px;
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: $blue-900;
+  }
+
+  &__text {
+    color: $gray-500;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  &__emphasis {
+    color: $gray-600;
+    font-style: italic;
+  }
+}
+
+// Stats Block
+.stats {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  &__card {
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 10px;
+    text-align: center;
+
+    &--blue {
+      background: $blue-50;
+      border-color: $blue-200;
+      color: $blue-700;
+    }
+
+    &--green {
+      background: $green-50;
+      border-color: $green-200;
+      color: $green-700;
+    }
+
+    &--red {
+      background: $red-50;
+      border-color: $red-200;
+      color: $red-700;
+    }
+
+    &--orange {
+      background: $orange-50;
+      border-color: $orange-200;
+      color: $orange-800;
+    }
+
+    &--purple {
+      background: $purple-50;
+      border-color: $purple-200;
+      color: $purple-700;
+    }
+
+    &--indigo {
+      background: $indigo-50;
+      border-color: $indigo-200;
+      color: $indigo-700;
+    }
+
+    &--teal {
+      background: $teal-50;
+      border-color: $teal-200;
+      color: $teal-700;
+    }
+
+    &--yellow {
+      background: $yellow-50;
+      border-color: $yellow-200;
+      color: $yellow-700;
+    }
+  }
+
+  &__number {
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  &__label {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+}
+
+// Controls Block
+.controls {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid $gray-200;
+  padding: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+
+  &__search {
+    border: 1px solid $gray-300;
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 200px;
+    outline: none;
+
+    &:focus {
+      border-color: $blue-400;
+      box-shadow: 0 0 0 2px $blue-200;
+    }
+  }
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: $gray-500;
+    white-space: nowrap;
+  }
+
+  &__select {
+    border: 1px solid $gray-300;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 12px;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      border-color: $blue-400;
+    }
+  }
+}
+
+// Button Block
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &--blue {
+    background: $blue-600;
+    color: #fff;
+
+    &:hover {
+      background: $blue-700;
+    }
+  }
+
+  &--green {
+    background: $green-600;
+    color: #fff;
+
+    &:hover {
+      background: $green-700;
+    }
+  }
+
+  &--gray {
+    background: $gray-200;
+    color: #374151;
+
+    &:hover {
+      background: $gray-300;
+    }
+  }
+
+  &--yellow {
+    background: $orange-600;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 11px;
+
+    &:hover {
+      background: $orange-700;
+    }
+  }
+
+  &--red {
+    background: $red-400;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 11px;
+
+    &:hover {
+      background: $red-600;
+    }
+  }
+
+  &--sm-green {
+    background: $green-500;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 11px;
+
+    &:hover {
+      background: $green-600;
+    }
+  }
+
+  &--sm-gray {
+    background: $gray-400;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 11px;
+
+    &:hover {
+      background: $gray-500;
+    }
+  }
+}
+
+// Toggle Link Block
+.toggle-link {
+  background: none;
+  border: none;
+  color: $blue-400;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+// Form Block
+.form {
+  background: $blue-50;
+  border: 1px solid $blue-200;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+
+  &__title {
+    font-size: 13px;
+    font-weight: 700;
+    color: $blue-700;
+    margin-bottom: 12px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+
+    &--wide {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: $gray-500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    border: 1px solid $gray-300;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+    font-family: inherit;
+
+    &:focus {
+      border-color: $blue-400;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 52px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+  }
+}
+
+// Table Block
+.table {
+  &__wrap {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid $gray-200;
+    overflow: hidden;
+  }
+
+  &__scroll {
+    overflow-x: auto;
+  }
+
+  &__footer {
+    padding: 8px 16px;
+    background: $gray-50;
+    border-top: 1px solid $gray-200;
+    font-size: 11px;
+    color: $gray-400;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  &__row {
+    &--editing {
+      background: $amber-50;
+    }
+
+    &--empty td {
+      text-align: center;
+      padding: 32px;
+      color: $gray-400;
+    }
+  }
+
+  &__cell {
+    &--number {
+      color: $gray-400;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    &--clamp {
+      max-width: 220px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    &--clamp-sm {
+      max-width: 150px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    &--italic {
+      font-style: italic;
+      color: $gray-500;
+    }
+
+    &--authors {
+      font-weight: 600;
+      color: $gray-900;
+      max-width: 140px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    &--year {
+      color: $gray-500;
+      white-space: nowrap;
+    }
+
+    &--doi {
+      a {
+        color: $blue-400;
+        text-decoration: underline;
+        font-size: 11px;
+        display: block;
+        max-width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+    &--notes {
+      color: $gray-500;
+      max-width: 160px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}
+
+// Base table styles (not BEM - native HTML elements)
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  tr {
+    background: $gray-50;
+    border-bottom: 2px solid $gray-200;
+  }
+}
+
+th {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: $gray-500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+tbody {
+  tr {
+    border-bottom: 1px solid $gray-100;
+    transition: background 0.1s;
+
+    &:hover {
+      background: $gray-50;
+    }
+  }
+}
+
+td {
+  padding: 9px 12px;
+  vertical-align: top;
+}
+
+// Badge Block
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--high {
+    background: #dcfce7;
+    color: $green-700;
+  }
+
+  &--medium {
+    background: $yellow-100;
+    color: $yellow-700;
+  }
+
+  &--low {
+    background: #fee2e2;
+    color: $red-700;
+  }
+
+  &--pending {
+    background: $orange-100;
+    color: $orange-800;
+  }
+
+  &--yes {
+    background: #dbeafe;
+    color: $blue-700;
+  }
+
+  &--no {
+    background: $gray-100;
+    color: $gray-500;
+  }
+
+  &--seed {
+    background: $purple-100;
+    color: $purple-700;
+  }
+
+  &--r1 {
+    background: #e0e7ff;
+    color: $indigo-900;
+  }
+
+  &--r2 {
+    background: #ccfbf1;
+    color: $teal-700;
+  }
+
+  &--r3 {
+    background: $pink-100;
+    color: $pink-700;
+  }
+
+  &--back {
+    background: #e0e7ff;
+    color: $indigo-600;
+  }
+
+  &--fwd {
+    background: #ccfbf1;
+    color: $teal-700;
+  }
+
+  &--dash {
+    background: $gray-100;
+    color: $gray-500;
+  }
+
+  &--wos {
+    background: $blue-50;
+    color: $blue-700;
+  }
+}
+
+// Edit Block
+.edit {
+  &__input {
+    border: 1px solid $yellow-400;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  &__textarea {
+    border: 1px solid $yellow-400;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+    width: 100%;
+    min-height: 48px;
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  &__select {
+    border: 1px solid $yellow-400;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-size: 12px;
+    background: #fff;
+    outline: none;
+    width: 100%;
+  }
+}
