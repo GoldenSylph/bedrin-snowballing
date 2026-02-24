@@ -7,6 +7,7 @@ import ControlsSection from '@/components/ControlsSection.vue';
 import AddPaperForm from '@/components/AddPaperForm.vue';
 import PapersTable from '@/components/PapersTable.vue';
 import { usePapers } from '@/composables/usePapers';
+import { useExportCsv } from '@/composables/useExportCsv';
 
 const ROUNDS: Round[] = ['Seed', 'Round 1', 'Round 2', 'Round 3'];
 const DIRECTIONS: Direction[] = ['No direction', 'Backward', 'Forward'];
@@ -24,6 +25,9 @@ const {
     updatePaper,
     deletePaper: deletePaperFromDb,
 } = usePapers();
+
+// Use the export CSV composable
+const { exportToCSV } = useExportCsv();
 
 const showForm = ref(false);
 const search = ref('');
@@ -89,6 +93,11 @@ const editPaper = async (updatedPaper: Paper) => {
     }
 };
 
+// Export papers to CSV
+const exportCsv = () => {
+    exportToCSV(papers.value);
+};
+
 // Filtered papers computed property
 const filtered = computed(() =>
     papers.value.filter((p) => {
@@ -124,7 +133,8 @@ onMounted(() => {
 
             <ControlsSection v-model:search="search" v-model:filter-round="filterRound"
                 v-model:filter-status="filterStatus" v-model:filter-dir="filterDir" :rounds="ROUNDS"
-                :directions="DIRECTIONS" :included="INCLUDED" @add-paper="showForm = !showForm" />
+                :directions="DIRECTIONS" :included="INCLUDED" @add-paper="showForm = !showForm"
+                @export-csv="exportCsv" />
 
             <AddPaperForm v-if="showForm" v-model:new-row="newRow" :rounds="ROUNDS" :directions="DIRECTIONS"
                 :relevance="RELEVANCE" :included="INCLUDED" :wos="WOS" @save="addPaper"

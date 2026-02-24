@@ -17,6 +17,7 @@ const emit = defineEmits<{
     'update:filterStatus': [value: 'All' | IncludedStatus];
     'update:filterDir': [value: 'All' | Direction];
     'add-paper': [];
+    'export-csv': [];
 }>();
 </script>
 
@@ -50,5 +51,6 @@ const emit = defineEmits<{
             </select>
         </fieldset>
         <button class="btn btn--blue" @click="emit('add-paper')">+ Add Paper</button>
+        <button class="btn btn--gray" @click="emit('export-csv')">Export CSV</button>
     </nav>
 </template>
