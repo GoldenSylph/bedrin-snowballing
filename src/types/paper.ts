@@ -2,7 +2,7 @@ export type Round = 'Seed' | 'Round 1' | 'Round 2' | 'Round 3';
 export type Direction = 'No direction' | 'Backward' | 'Forward';
 export type Relevance = 'High' | 'Medium' | 'Low' | 'Pending';
 export type IncludedStatus = 'Yes' | 'No' | 'Pending';
-export type WosIndex = 'SSCI' | 'SCI' | 'SSCI/SCI' | 'ESCI' | 'Not WoS' | 'Unknown';
+export type TypeOfSource = 'SSCI' | 'SCI' | 'SSCI/SCI' | 'ESCI' | 'Google Scholar' | 'Scopus' | 'Not indexed' | 'Unknown';
 
 export interface Paper {
   id: number;
@@ -12,7 +12,7 @@ export interface Paper {
   year: number;
   title: string;
   journal: string;
-  wosIndex: WosIndex;
+  typeOfSource: TypeOfSource;
   keywords: string;
   relevance: Relevance;
   included: IncludedStatus;

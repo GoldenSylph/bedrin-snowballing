@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, toRaw } from 'vue';
-import type { Paper, Round, Direction, Relevance, IncludedStatus, WosIndex } from '@/types/paper';
+import type { Paper, Round, Direction, Relevance, IncludedStatus, TypeOfSource } from '@/types/paper';
 import HeaderSection from '@/components/HeaderSection.vue';
 import StatsSection from '@/components/StatsSection.vue';
 import ControlsSection from '@/components/ControlsSection.vue';
@@ -8,12 +8,13 @@ import AddPaperForm from '@/components/AddPaperForm.vue';
 import PapersTable from '@/components/PapersTable.vue';
 import { usePapers } from '@/composables/usePapers';
 import { useExportCsv } from '@/composables/useExportCsv';
+import { useImportCsv } from '@/composables/useImportCsv';
 
 const ROUNDS: Round[] = ['Seed', 'Round 1', 'Round 2', 'Round 3'];
 const DIRECTIONS: Direction[] = ['No direction', 'Backward', 'Forward'];
 const RELEVANCE: Relevance[] = ['High', 'Medium', 'Low'];
 const INCLUDED: IncludedStatus[] = ['Yes', 'No', 'Pending'];
-const WOS: WosIndex[] = ['SSCI', 'SCI', 'SSCI/SCI', 'ESCI', 'Not WoS', 'Unknown'];
+const SOURCES: TypeOfSource[] = ['SSCI', 'SCI', 'SSCI/SCI', 'ESCI', 'Google Scholar', 'Scopus', 'Not indexed', 'Unknown'];
 
 // Use the papers composable
 const {
@@ -24,10 +25,14 @@ const {
     addPaper: addPaperToDb,
     updatePaper,
     deletePaper: deletePaperFromDb,
+    bulkAddPapers,
 } = usePapers();
 
 // Use the export CSV composable
 const { exportToCSV } = useExportCsv();
+
+// Use the import CSV composable
+const { importFromCSV } = useImportCsv();
 
 const showForm = ref(false);
 const search = ref('');
@@ -42,7 +47,7 @@ const emptyRow = (): Omit<Paper, 'id'> => ({
     year: new Date().getFullYear(),
     title: '',
     journal: '',
-    wosIndex: 'Unknown',
+    typeOfSource: 'Unknown',
     keywords: '',
     relevance: 'Pending',
     included: 'Pending',
@@ -98,6 +103,18 @@ const exportCsv = () => {
     exportToCSV(papers.value);
 };
 
+// Import papers from CSV
+const importCsv = async () => {
+    try {
+        const importedPapers = await importFromCSV();
+        await bulkAddPapers(importedPapers);
+        alert(`Successfully imported ${importedPapers.length} papers. Duplicates were automatically skipped.`);
+    } catch (error) {
+        const errorMessage = error instanceof Error ? error.message : 'Failed to import CSV';
+        alert(`Import failed:\n${errorMessage}`);
+    }
+};
+
 // Filtered papers computed property
 const filtered = computed(() =>
     papers.value.filter((p) => {
@@ -133,15 +150,15 @@ onMounted(() => {
 
             <ControlsSection v-model:search="search" v-model:filter-round="filterRound"
                 v-model:filter-status="filterStatus" v-model:filter-dir="filterDir" :rounds="ROUNDS"
-                :directions="DIRECTIONS" :included="INCLUDED" @add-paper="showForm = !showForm"
+                :directions="DIRECTIONS" :included="INCLUDED" @add-paper="showForm = !showForm" @import-csv="importCsv"
                 @export-csv="exportCsv" />
 
             <AddPaperForm v-if="showForm" v-model:new-row="newRow" :rounds="ROUNDS" :directions="DIRECTIONS"
-                :relevance="RELEVANCE" :included="INCLUDED" :wos="WOS" @save="addPaper"
+                :relevance="RELEVANCE" :included="INCLUDED" :sources="SOURCES" @save="addPaper"
                 @cancel="showForm = false; resetForm()" />
 
             <PapersTable :papers="filtered" :rounds="ROUNDS" :directions="DIRECTIONS" :relevance="RELEVANCE"
-                :included="INCLUDED" :wos="WOS" @edit="editPaper" @delete="deletePaper" />
+                :included="INCLUDED" :sources="SOURCES" @edit="editPaper" @delete="deletePaper" />
         </template>
     </main>
 </template>

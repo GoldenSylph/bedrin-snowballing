@@ -100,7 +100,7 @@ The built files will be in the `dist/` directory.
 2. Fill in the paper details:
    - **Required**: Authors, Year, Title
    - **Optional**: Journal, DOI, Keywords, Notes
-   - **Metadata**: Round, Direction, WoS Index, Relevance, Inclusion Status
+   - **Metadata**: Round, Direction, Source Type, Relevance, Inclusion Status
 3. Click "Save Paper" to add it to the database
 
 ### Editing Papers
@@ -179,7 +179,7 @@ interface Paper {
   year: number;            // Publication year
   title: string;           // Paper title
   journal: string;         // Journal name
-  wosIndex: WosIndex;      // Web of Science index
+  typeOfSource: TypeOfSource; // 'SSCI' | 'SCI' | 'SSCI/SCI' | 'ESCI' | 'Google Scholar' | 'Scopus' | 'Not indexed' | 'Unknown'
   keywords: string;        // Comma-separated keywords
   relevance: Relevance;    // 'High' | 'Medium' | 'Low' | 'Pending'
   included: IncludedStatus; // 'Yes' | 'No' | 'Pending'

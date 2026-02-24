@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Paper, Round, Direction, Relevance, IncludedStatus, WosIndex } from '@/types/paper';
+import type { Paper, Round, Direction, Relevance, IncludedStatus, TypeOfSource } from '@/types/paper';
 
 const props = defineProps<{
     newRow: Omit<Paper, 'id'>;
@@ -7,7 +7,7 @@ const props = defineProps<{
     directions: Direction[];
     relevance: Relevance[];
     included: IncludedStatus[];
-    wos: WosIndex[];
+    sources: TypeOfSource[];
 }>();
 
 const emit = defineEmits<{
@@ -52,10 +52,10 @@ const updateField = <K extends keyof Omit<Paper, 'id'>>(field: K, value: Omit<Pa
                 </select>
             </div>
             <div class="form__field">
-                <label class="form__label">WoS Index</label>
-                <select class="form__select" :value="newRow.wosIndex"
-                    @change="updateField('wosIndex', ($event.target as HTMLSelectElement).value as WosIndex)">
-                    <option v-for="w in wos" :key="w">{{ w }}</option>
+                <label class="form__label">Source Type</label>
+                <select class="form__select" :value="newRow.typeOfSource"
+                    @change="updateField('typeOfSource', ($event.target as HTMLSelectElement).value as TypeOfSource)">
+                    <option v-for="s in sources" :key="s">{{ s }}</option>
                 </select>
             </div>
             <div class="form__field">

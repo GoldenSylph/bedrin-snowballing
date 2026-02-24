@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Paper, Round, Direction, Relevance, IncludedStatus, WosIndex } from '@/types/paper';
+import type { Paper, Round, Direction, Relevance, IncludedStatus, TypeOfSource } from '@/types/paper';
 
 defineProps<{
     papers: Paper[];
@@ -8,7 +8,7 @@ defineProps<{
     directions: Direction[];
     relevance: Relevance[];
     included: IncludedStatus[];
-    wos: WosIndex[];
+    sources: TypeOfSource[];
 }>();
 
 const emit = defineEmits<{
@@ -83,7 +83,7 @@ const incBadge = (i: IncludedStatus) => {
                         <th>Year</th>
                         <th>Title</th>
                         <th>Journal</th>
-                        <th>WoS</th>
+                        <th>Source</th>
                         <th>Keywords</th>
                         <th>Relevance</th>
                         <th>Included</th>
@@ -117,7 +117,7 @@ const incBadge = (i: IncludedStatus) => {
                                 <div class="table__cell--clamp-sm table__cell--italic">{{ p.journal }}</div>
                             </td>
                             <td>
-                                <span class="badge badge--wos">{{ p.wosIndex }}</span>
+                                <span class="badge badge--source">{{ p.typeOfSource }}</span>
                             </td>
                             <td>
                                 <div class="table__cell--clamp-sm" style="color: #6b7280">{{ p.keywords }}</div>
@@ -162,8 +162,8 @@ const incBadge = (i: IncludedStatus) => {
                             <td><textarea class="edit__textarea" v-model="editData.title"></textarea></td>
                             <td><input class="edit__input" v-model="editData.journal" /></td>
                             <td>
-                                <select class="edit__select" v-model="editData.wosIndex">
-                                    <option v-for="w in wos" :key="w">{{ w }}</option>
+                                <select class="edit__select" v-model="editData.typeOfSource">
+                                    <option v-for="s in sources" :key="s">{{ s }}</option>
                                 </select>
                             </td>
                             <td><input class="edit__input" v-model="editData.keywords" /></td>

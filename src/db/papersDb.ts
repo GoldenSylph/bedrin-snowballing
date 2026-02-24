@@ -10,8 +10,23 @@ class PapersDatabase extends Dexie {
     
     // Define database schema
     // Using ++ before id makes it auto-increment
+    
+    // Version 1: Initial schema with wosIndex
     this.version(1).stores({
       papers: '++id, round, direction, authors, year, title, journal, wosIndex, relevance, included, doi',
+    });
+    
+    // Version 2: Rename wosIndex to typeOfSource and update values
+    this.version(2).stores({
+      papers: '++id, round, direction, authors, year, title, journal, typeOfSource, relevance, included, doi',
+    }).upgrade(tx => {
+      // Migrate existing data: rename wosIndex to typeOfSource
+      return tx.table('papers').toCollection().modify((paper: any) => {
+        if (paper.wosIndex) {
+          paper.typeOfSource = paper.wosIndex === 'Not WoS' ? 'Not indexed' : paper.wosIndex;
+          delete paper.wosIndex;
+        }
+      });
     });
   }
 }

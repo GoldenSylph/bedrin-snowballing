@@ -111,6 +111,18 @@ export const usePapers = () => {
     }
   };
 
+  // Bulk add papers (for CSV import)
+  const bulkAddPapers = async (papersToAdd: Omit<Paper, 'id'>[]): Promise<void> => {
+    try {
+      await papersDb.bulkAdd(papersToAdd as Paper[]);
+      await loadPapers();
+      console.log('Bulk import completed');
+    } catch (error) {
+      console.error('Error bulk adding papers:', error);
+      throw error;
+    }
+  };
+
   // Computed stats
   const stats = computed(() => ({
     total: papers.value.length,
@@ -135,5 +147,6 @@ export const usePapers = () => {
     deletePaper,
     getPaperById,
     clearAllPapers,
+    bulkAddPapers,
   };
 };
