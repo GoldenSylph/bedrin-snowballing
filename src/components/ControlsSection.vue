@@ -19,7 +19,8 @@ const emit = defineEmits<{
     'add-paper': [];
     'export-csv': [];
     'import-csv': [];
-}>();
+    'flush-db': [];
+}>(); 
 </script>
 
 <template>
@@ -54,5 +55,6 @@ const emit = defineEmits<{
         <button class="btn btn--blue" @click="emit('add-paper')">+ Add Paper</button>
         <button class="btn btn--gray" @click="emit('import-csv')">Import CSV</button>
         <button class="btn btn--gray" @click="emit('export-csv')">Export CSV</button>
+        <button class="btn btn--danger" @click="emit('flush-db')">Flush DB</button>
     </nav>
 </template>

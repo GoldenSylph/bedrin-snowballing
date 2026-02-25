@@ -26,6 +26,7 @@ const {
     updatePaper,
     deletePaper: deletePaperFromDb,
     bulkAddPapers,
+    clearAllPapers,
 } = usePapers();
 
 // Use the export CSV composable
@@ -103,6 +104,17 @@ const exportCsv = () => {
     exportToCSV(papers.value);
 };
 
+// Flush (clear) all papers from the database
+const flushDb = async () => {
+    if (!confirm('This will permanently delete ALL papers from the database. Are you sure?')) return;
+    try {
+        await clearAllPapers();
+        alert('Database flushed successfully.');
+    } catch (error) {
+        alert('Failed to flush the database. Please try again.');
+    }
+};
+
 // Import papers from CSV
 const importCsv = async () => {
     try {
@@ -151,7 +163,7 @@ onMounted(() => {
             <ControlsSection v-model:search="search" v-model:filter-round="filterRound"
                 v-model:filter-status="filterStatus" v-model:filter-dir="filterDir" :rounds="ROUNDS"
                 :directions="DIRECTIONS" :included="INCLUDED" @add-paper="showForm = !showForm" @import-csv="importCsv"
-                @export-csv="exportCsv" />
+                @export-csv="exportCsv" @flush-db="flushDb" />
 
             <AddPaperForm v-if="showForm" v-model:new-row="newRow" :rounds="ROUNDS" :directions="DIRECTIONS"
                 :relevance="RELEVANCE" :included="INCLUDED" :sources="SOURCES" @save="addPaper"

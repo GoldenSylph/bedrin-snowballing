@@ -283,6 +283,15 @@ body {
     }
   }
 
+  &--danger {
+    background: $red-600;
+    color: #fff;
+
+    &:hover {
+      background: $red-700;
+    }
+  }
+
   &--yellow {
     background: $orange-600;
     color: #fff;

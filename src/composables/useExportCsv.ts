@@ -5,13 +5,13 @@ import type { Paper } from '@/types/paper';
  */
 export const useExportCsv = () => {
   /**
-   * Escapes CSV field values that contain commas, quotes, or newlines
+   * Escapes CSV field values that contain semicolons, quotes, or newlines
    */
   const escapeCsvField = (value: string | number): string => {
     const stringValue = String(value);
     
-    // If the value contains comma, quote, or newline, wrap it in quotes and escape internal quotes
-    if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+    // If the value contains semicolon, quote, or newline, wrap it in quotes and escape internal quotes
+    if (stringValue.includes(';') || stringValue.includes('"') || stringValue.includes('\n')) {
       return `"${stringValue.replace(/"/g, '""')}"`;
     }
     
@@ -40,7 +40,7 @@ export const useExportCsv = () => {
     ];
 
     // Create CSV header row
-    const headerRow = headers.join(',');
+    const headerRow = headers.join(';');
 
     // Create CSV data rows
     const dataRows = papers.map(paper => [
@@ -57,7 +57,7 @@ export const useExportCsv = () => {
       escapeCsvField(paper.included),
       escapeCsvField(paper.notes),
       escapeCsvField(paper.doi)
-    ].join(','));
+    ].join(';'));
 
     // Combine header and data
     const csvContent = [headerRow, ...dataRows].join('\n');

@@ -25,7 +25,7 @@ export const useImportCsv = () => {
           // Toggle quotes
           inQuotes = !inQuotes;
         }
-      } else if (char === ',' && !inQuotes) {
+      } else if (char === ';' && !inQuotes) {
         // Field separator
         result.push(current);
         current = '';
