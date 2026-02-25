@@ -29,18 +29,6 @@ A paper must address at least **two** of three core concepts:
 
 ---
 
-## Seeds
-
-| # | Authors | Year | Journal | DOI |
-|---|---|---|---|---|
-| S1 | Davidson, De Filippi & Potts | 2018 | Journal of Institutional Economics | 10.1017/S1744137417000200 |
-| S2 | Hoffman, Ibáñez & Simperl | 2020 | Frontiers in Blockchain | 10.3389/fbloc.2020.00035 |
-| S3 | Kanakoglou & Kafetzopoulos | 2026 | Systems | 10.3390/systems14010035 |
-| S4 | Shoker | 2021 | One Earth | 10.1016/j.oneear.2021.05.014 |
-| S5 | Zwitter & Hazenberg | 2020 | Frontiers in Blockchain | 10.3389/fbloc.2020.00012 |
-
----
-
 ## Phase 1 — Verify Seeds
 For each seed confirm three things before starting:
 1. **Indexing** — check WoS ([mjl.clarivate.com](https://mjl.clarivate.com)), Scopus, DOAJ, or ERIH PLUS. Record all confirmed indexes.
@@ -120,7 +108,6 @@ Use tracker filters to get the numbers for your methodology paragraph:
 | Pasting candidate lists into chat | ✅ | ❌ |
 | Screening candidates against criteria | ❌ | ✅ |
 | Checking indexing and free access | ❌ | ✅ |
-| Reading papers in full | ✅ | ❌ |
 | Synthesizing arguments | ✅ | ❌ |
 
 ---
